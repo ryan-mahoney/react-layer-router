@@ -1,0 +1,34 @@
+{
+  "name": "react-layer-router",
+  "version": "0.1.0",
+  "description": "",
+  "main": "modules",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ryan-mahoney/react-layer-router.git"
+  },
+  "homepage": "https://github.com/ryan-mahoney/react-layer-router/blob/latest/README.md",
+  "bugs": "https://github.com/ryan-mahoney/react-layer-router/issues",
+  "authors": [
+    "Ryan Mahoney"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "react": "^0.13.1",
+    "react-router": "^0.13.2"
+  },
+  "tags": [
+    "react",
+    "router",
+    "layers"
+  ],
+  "keywords": [
+    "react",
+    "react-component",
+    "routing",
+    "route",
+    "routes",
+    "router",
+    "layers"
+  ]
+}
