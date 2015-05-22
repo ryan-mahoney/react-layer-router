@@ -1,7 +1,7 @@
 {
   "name": "react-layer-router",
   "version": "0.1.4",
-  "description": "",
+  "description": "Wrapper for React Router to add Layering",
   "main": "modules/LayerRouter.js",
   "files": [
     "modules/LayerRouter.js",
@@ -22,7 +22,7 @@
     "react-router": "^0.13.2"
   },
   "devDependencies": {
-    "babel": "^5.4.7",
+    "babel": "^5.4.7"
   },
   "tags": [
     "react",
