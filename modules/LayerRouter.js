@@ -4,7 +4,6 @@ import Router from 'react-router';
 class LayerRouter {
 
     constructor() {
-        super();
         this.layerCount = 0;
         this.currentIndex = 0;
     }
