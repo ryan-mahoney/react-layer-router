@@ -1,11 +1,11 @@
 {
   "name": "react-layer-router",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Wrapper for React Router to add Layering",
-  "main": "modules/LayerRouter.js",
+  "main": "lib/LayerRouter.js",
   "files": [
-    "modules/LayerRouter.js",
-    "modules/components"
+    "lib/LayerRouter.js",
+    "lib/components"
   ],
   "repository": {
     "type": "git",
