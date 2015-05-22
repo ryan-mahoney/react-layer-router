@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
-import LayerRouter from '../libs/LayerRouter';
+import LayerRouter from '../LayerRouter';
 
 function layerLink(Component) {
     const LayerLink = React.createClass({

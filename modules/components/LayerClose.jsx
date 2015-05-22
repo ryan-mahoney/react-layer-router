@@ -1,5 +1,5 @@
 import React from 'react';
-import LayerRouter from '../libs/LayerRouter';
+import LayerRouter from '../LayerRouter';
 
 class LayerClose extends React.Component{
 
