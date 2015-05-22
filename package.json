@@ -1,8 +1,12 @@
 {
   "name": "react-layer-router",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "",
-  "main": "modules",
+  "main": "modules/LayerRouter.js",
+  "files": [
+    "modules/LayerRouter.js",
+    "modules/components"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/ryan-mahoney/react-layer-router.git"
