@@ -1,12 +1,8 @@
 {
   "name": "react-layer-router",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "Wrapper for React Router to add Layering",
-  "main": "lib/LayerRouter.js",
-  "files": [
-    "lib/LayerRouter.js",
-    "lib/components"
-  ],
+  "main": "lib",
   "repository": {
     "type": "git",
     "url": "https://github.com/ryan-mahoney/react-layer-router.git"
