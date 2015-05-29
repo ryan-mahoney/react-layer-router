@@ -1,20 +1,20 @@
 import React from 'react';
 import LayerRouter from '../LayerRouter';
 
-class LayerClose extends React.Component{
+class LayerClose extends React.Component {
 
-    constructor(props, context) {
-        super(props);
+    constructor() {
+        super();
+        this.handleClick = this.handleClick.bind(this);
     }
 
-    handleClose () {
+    handleClick (event) {
+        event.preventDefault();
         LayerRouter.close();
     }
 
     render() {
-        return (
-            <div onClick={this.handleClose}>Close</div>
-        );
+        return (<a className="react-layer-close" href="#" onClick={this.handleClick}>{this.props.children}</a>);
     }
 }
 

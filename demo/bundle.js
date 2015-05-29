@@ -18246,26 +18246,28 @@
 	var _LayerRouter2 = _interopRequireDefault(_LayerRouter);
 
 	var LayerClose = (function (_React$Component) {
-	    function LayerClose(props, context) {
+	    function LayerClose() {
 	        _classCallCheck(this, LayerClose);
 
-	        _get(Object.getPrototypeOf(LayerClose.prototype), 'constructor', this).call(this, props);
+	        _get(Object.getPrototypeOf(LayerClose.prototype), 'constructor', this).call(this);
+	        this.handleClick = this.handleClick.bind(this);
 	    }
 
 	    _inherits(LayerClose, _React$Component);
 
 	    _createClass(LayerClose, [{
-	        key: 'handleClose',
-	        value: function handleClose() {
+	        key: 'handleClick',
+	        value: function handleClick(event) {
+	            event.preventDefault();
 	            _LayerRouter2['default'].close();
 	        }
 	    }, {
 	        key: 'render',
 	        value: function render() {
 	            return _react2['default'].createElement(
-	                'div',
-	                { onClick: this.handleClose },
-	                'Close'
+	                'a',
+	                { className: 'react-layer-close', href: '#', onClick: this.handleClick },
+	                this.props.children
 	            );
 	        }
 	    }]);
@@ -18328,7 +18330,7 @@
 	        }
 	    }, {
 	        key: 'target',
-	        value: function target(index, to, params) {
+	        value: function target(index, to, params, Component) {
 	            if (index == 'new') {
 	                this.currentIndex = this.layerCount + 1;
 	            } else if (index == 'clear') {
@@ -18338,6 +18340,10 @@
 	                    this.currentIndex++;
 	                }
 	            } else {
+	                if (index == 0) {
+	                    console.log('The first layer is identified by the index 1.');
+	                    return;
+	                }
 	                this.currentIndex = index;
 	            }
 
@@ -18368,9 +18374,24 @@
 	            if (Handler == false) {
 	                return;
 	            }
-	            _react2['default'].withContext({ 'router': this.router }, function () {
-	                _react2['default'].render(_react2['default'].createElement(Handler, null), document.getElementById(target));
-	            });
+	            console.log('Target: ' + target);
+
+	            console.log(Component);
+	            console.log(Handler);
+
+	            if (Component) {
+	                _react2['default'].withContext({ 'router': this.router }, function () {
+	                    _react2['default'].render(_react2['default'].createElement(
+	                        Component,
+	                        null,
+	                        _react2['default'].createElement(Handler, null)
+	                    ), document.getElementById(target));
+	                });
+	            } else {
+	                _react2['default'].withContext({ 'router': this.router }, function () {
+	                    _react2['default'].render(_react2['default'].createElement(Handler, null), document.getElementById(target));
+	                });
+	            }
 	        }
 	    }, {
 	        key: 'close',
@@ -18420,6 +18441,8 @@
 
 	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
+	var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
@@ -18438,9 +18461,8 @@
 	    function LayerLink() {
 	        _classCallCheck(this, LayerLink);
 
-	        if (_React$Component != null) {
-	            _React$Component.apply(this, arguments);
-	        }
+	        _get(Object.getPrototypeOf(LayerLink.prototype), 'constructor', this).call(this);
+	        this.handleClick = this.handleClick.bind(this);
 	    }
 
 	    _inherits(LayerLink, _React$Component);
@@ -18449,15 +18471,16 @@
 	        key: 'handleClick',
 	        value: function handleClick(event) {
 	            event.preventDefault();
-	            _LayerRouter2['default'].target(this.props.layer, this.props.to, this.props.params);
+	            _LayerRouter2['default'].target(this.props.layer, this.props.to, this.props.params, this.props.component);
 	        }
 	    }, {
 	        key: 'render',
 	        value: function render() {
-	            var props = this.props;
-	            props.onClick = this.handleClick.bind(this);
-
-	            return _react2['default'].DOM.a(props, this.props.children);
+	            return _react2['default'].createElement(
+	                'a',
+	                { href: '#', onClick: this.handleClick },
+	                this.props.children
+	            );
 	        }
 	    }]);
 
@@ -21696,11 +21719,19 @@
 
 	var _componentsInfoJsx2 = _interopRequireDefault(_componentsInfoJsx);
 
-	var _componentsTestJsx = __webpack_require__(202);
+	var _componentsInfo2Jsx = __webpack_require__(203);
+
+	var _componentsInfo2Jsx2 = _interopRequireDefault(_componentsInfo2Jsx);
+
+	var _componentsTestJsx = __webpack_require__(204);
 
 	var _componentsTestJsx2 = _interopRequireDefault(_componentsTestJsx);
 
-	var _componentsAppJsx = __webpack_require__(203);
+	var _componentsTest2Jsx = __webpack_require__(205);
+
+	var _componentsTest2Jsx2 = _interopRequireDefault(_componentsTest2Jsx);
+
+	var _componentsAppJsx = __webpack_require__(206);
 
 	var _componentsAppJsx2 = _interopRequireDefault(_componentsAppJsx);
 
@@ -21708,8 +21739,10 @@
 	  _reactRouter.Route,
 	  { name: 'app', path: '/', handler: _componentsAppJsx2['default'] },
 	  _react2['default'].createElement(_reactRouter.Route, { name: 'info', handler: _componentsInfoJsx2['default'] }),
+	  _react2['default'].createElement(_reactRouter.Route, { name: 'info2', handler: _componentsInfo2Jsx2['default'] }),
 	  _react2['default'].createElement(_reactRouter.Route, { name: 'test', handler: _componentsTestJsx2['default'] }),
-	  _react2['default'].createElement(_reactRouter.DefaultRoute, { handler: _componentsTestJsx2['default'] }),
+	  _react2['default'].createElement(_reactRouter.Route, { name: 'test2', handler: _componentsTest2Jsx2['default'] }),
+	  _react2['default'].createElement(_reactRouter.DefaultRoute, { handler: _componentsInfoJsx2['default'] }),
 	  _react2['default'].createElement(_reactRouter.NotFoundRoute, { handler: _componentsInfoJsx2['default'] })
 	);
 
@@ -21744,6 +21777,10 @@
 
 	var _modulesComponentsLayerLinkJsx2 = _interopRequireDefault(_modulesComponentsLayerLinkJsx);
 
+	var _modulesComponentsLayersModalJsx = __webpack_require__(202);
+
+	var _modulesComponentsLayersModalJsx2 = _interopRequireDefault(_modulesComponentsLayersModalJsx);
+
 	var Info = (function (_React$Component) {
 	  function Info() {
 	    _classCallCheck(this, Info);
@@ -21764,24 +21801,26 @@
 	        _react2['default'].createElement(
 	          'h1',
 	          null,
-	          'Info area'
+	          'React Layer Router'
 	        ),
 	        _react2['default'].createElement(
 	          'p',
 	          null,
-	          'info'
+	          'This is a demo'
 	        ),
+	        _react2['default'].createElement('br', null),
 	        _react2['default'].createElement('br', null),
 	        _react2['default'].createElement(
 	          _reactRouter.Link,
-	          { to: 'test' },
-	          'Test Link'
+	          { to: 'info2' },
+	          'Regular React Link'
 	        ),
+	        _react2['default'].createElement('br', null),
 	        _react2['default'].createElement('br', null),
 	        _react2['default'].createElement(
 	          _modulesComponentsLayerLinkJsx2['default'],
-	          { to: 'test', layer: 'new' },
-	          'Test Layer Link'
+	          { to: 'test', layer: 'new', component: _modulesComponentsLayersModalJsx2['default'] },
+	          'Open a Layer'
 	        )
 	      );
 	    }
@@ -21795,6 +21834,133 @@
 
 /***/ },
 /* 202 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) subClass.__proto__ = superClass; }
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var Modal = (function (_React$Component) {
+	    function Modal() {
+	        _classCallCheck(this, Modal);
+
+	        if (_React$Component != null) {
+	            _React$Component.apply(this, arguments);
+	        }
+	    }
+
+	    _inherits(Modal, _React$Component);
+
+	    _createClass(Modal, [{
+	        key: "render",
+	        value: function render() {
+	            return _react2["default"].createElement(
+	                "div",
+	                { className: "react-layer-modal" },
+	                this.props.children
+	            );
+	        }
+	    }]);
+
+	    return Modal;
+	})(_react2["default"].Component);
+
+	;
+
+	exports["default"] = Modal;
+	module.exports = exports["default"];
+
+/***/ },
+/* 203 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) subClass.__proto__ = superClass; }
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactRouter = __webpack_require__(161);
+
+	var _modulesComponentsLayerLinkJsx = __webpack_require__(160);
+
+	var _modulesComponentsLayerLinkJsx2 = _interopRequireDefault(_modulesComponentsLayerLinkJsx);
+
+	var _modulesComponentsLayersModalJsx = __webpack_require__(202);
+
+	var _modulesComponentsLayersModalJsx2 = _interopRequireDefault(_modulesComponentsLayersModalJsx);
+
+	var Info2 = (function (_React$Component) {
+	  function Info2() {
+	    _classCallCheck(this, Info2);
+
+	    if (_React$Component != null) {
+	      _React$Component.apply(this, arguments);
+	    }
+	  }
+
+	  _inherits(Info2, _React$Component);
+
+	  _createClass(Info2, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2['default'].createElement(
+	        'div',
+	        null,
+	        _react2['default'].createElement(
+	          'h1',
+	          null,
+	          'React Layer Router'
+	        ),
+	        _react2['default'].createElement(
+	          'p',
+	          null,
+	          'This is a demo'
+	        ),
+	        _react2['default'].createElement('br', null),
+	        _react2['default'].createElement(
+	          _reactRouter.Link,
+	          { to: 'info' },
+	          'Back Home'
+	        )
+	      );
+	    }
+	  }]);
+
+	  return Info2;
+	})(_react2['default'].Component);
+
+	exports['default'] = Info2;
+	module.exports = exports['default'];
+
+/***/ },
+/* 204 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21825,6 +21991,10 @@
 
 	var _modulesComponentsLayerLinkJsx2 = _interopRequireDefault(_modulesComponentsLayerLinkJsx);
 
+	var _modulesComponentsLayersModalJsx = __webpack_require__(202);
+
+	var _modulesComponentsLayersModalJsx2 = _interopRequireDefault(_modulesComponentsLayersModalJsx);
+
 	var Test = (function (_React$Component) {
 	    function Test() {
 	        _classCallCheck(this, Test);
@@ -21845,35 +22015,40 @@
 	                _react2['default'].createElement(
 	                    'h1',
 	                    null,
-	                    'Test'
+	                    'A Layer'
 	                ),
 	                _react2['default'].createElement(
 	                    'p',
 	                    null,
-	                    'test'
+	                    'This is a demo of how layers work.'
 	                ),
+	                _react2['default'].createElement('br', null),
+	                _react2['default'].createElement('br', null),
+	                _react2['default'].createElement(
+	                    _modulesComponentsLayerLinkJsx2['default'],
+	                    { to: 'test2', layer: '1', component: _modulesComponentsLayersModalJsx2['default'] },
+	                    'Put Different Content Here'
+	                ),
+	                _react2['default'].createElement('br', null),
+	                _react2['default'].createElement('br', null),
+	                _react2['default'].createElement(
+	                    _modulesComponentsLayerLinkJsx2['default'],
+	                    { to: 'test2', layer: 'new', component: _modulesComponentsLayersModalJsx2['default'] },
+	                    'Load Another Layer'
+	                ),
+	                _react2['default'].createElement('br', null),
+	                _react2['default'].createElement('br', null),
 	                _react2['default'].createElement(
 	                    _reactRouter.Link,
-	                    { to: 'info' },
-	                    'Info'
+	                    { to: 'info2' },
+	                    'Change Top Level Page'
 	                ),
 	                _react2['default'].createElement('br', null),
-	                _react2['default'].createElement(
-	                    _modulesComponentsLayerLinkJsx2['default'],
-	                    { to: 'info', layer: '0' },
-	                    'Info to Here'
-	                ),
-	                _react2['default'].createElement('br', null),
-	                _react2['default'].createElement(
-	                    _modulesComponentsLayerLinkJsx2['default'],
-	                    { to: 'info', layer: 'new' },
-	                    'Info to Another'
-	                ),
 	                _react2['default'].createElement('br', null),
 	                _react2['default'].createElement(
 	                    _modulesComponentsLayerCloseJsx2['default'],
 	                    null,
-	                    'Close Layer'
+	                    'Close This Layer'
 	                )
 	            );
 	        }
@@ -21886,7 +22061,106 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 203 */
+/* 205 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+	    value: true
+	});
+
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) subClass.__proto__ = superClass; }
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactRouter = __webpack_require__(161);
+
+	var _modulesComponentsLayerCloseJsx = __webpack_require__(158);
+
+	var _modulesComponentsLayerCloseJsx2 = _interopRequireDefault(_modulesComponentsLayerCloseJsx);
+
+	var _modulesComponentsLayerLinkJsx = __webpack_require__(160);
+
+	var _modulesComponentsLayerLinkJsx2 = _interopRequireDefault(_modulesComponentsLayerLinkJsx);
+
+	var _modulesComponentsLayersModalJsx = __webpack_require__(202);
+
+	var _modulesComponentsLayersModalJsx2 = _interopRequireDefault(_modulesComponentsLayersModalJsx);
+
+	var Test2 = (function (_React$Component) {
+	    function Test2() {
+	        _classCallCheck(this, Test2);
+
+	        if (_React$Component != null) {
+	            _React$Component.apply(this, arguments);
+	        }
+	    }
+
+	    _inherits(Test2, _React$Component);
+
+	    _createClass(Test2, [{
+	        key: 'render',
+	        value: function render() {
+	            return _react2['default'].createElement(
+	                'div',
+	                null,
+	                _react2['default'].createElement(
+	                    'h1',
+	                    null,
+	                    'Another Layer'
+	                ),
+	                _react2['default'].createElement(
+	                    'p',
+	                    null,
+	                    'This is a demo of how layers work.'
+	                ),
+	                _react2['default'].createElement(
+	                    _reactRouter.Link,
+	                    { to: 'info' },
+	                    'Go Back to Info Page'
+	                ),
+	                _react2['default'].createElement('br', null),
+	                _react2['default'].createElement('br', null),
+	                _react2['default'].createElement(
+	                    _modulesComponentsLayerLinkJsx2['default'],
+	                    { to: 'test', layer: 'new', component: _modulesComponentsLayersModalJsx2['default'] },
+	                    'Load Another Layer'
+	                ),
+	                _react2['default'].createElement('br', null),
+	                _react2['default'].createElement('br', null),
+	                _react2['default'].createElement(
+	                    _reactRouter.Link,
+	                    { to: 'info2' },
+	                    'Change Top Level Page'
+	                ),
+	                _react2['default'].createElement('br', null),
+	                _react2['default'].createElement('br', null),
+	                _react2['default'].createElement(
+	                    _modulesComponentsLayerCloseJsx2['default'],
+	                    null,
+	                    'Close This Layer'
+	                )
+	            );
+	        }
+	    }]);
+
+	    return Test2;
+	})(_react2['default'].Component);
+
+	exports['default'] = Test2;
+	module.exports = exports['default'];
+
+/***/ },
+/* 206 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';

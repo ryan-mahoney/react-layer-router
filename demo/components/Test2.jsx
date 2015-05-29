@@ -4,22 +4,19 @@ import LayerClose from '../../modules/components/LayerClose.jsx';
 import LayerLink from '../../modules/components/LayerLink.jsx';
 import Modal from '../../modules/components/layers/Modal.jsx';
 
-class Test extends React.Component {
+class Test2 extends React.Component {
     render() {
         return (
             <div>
-                <h1>A Layer</h1>
+                <h1>Another Layer</h1>
                 <p>This is a demo of how layers work.</p>
 
-                <br />
-                <br />
-
-                <LayerLink to="test2" layer="1" component={Modal}>Put Different Content Here</LayerLink>
+                <Link to="info">Go Back to Info Page</Link>
 
                 <br />
                 <br />
 
-                <LayerLink to="test2" layer="new" component={Modal}>Load Another Layer</LayerLink>
+                <LayerLink to="test" layer="new" component={Modal}>Load Another Layer</LayerLink>
 
                 <br />
                 <br />
@@ -35,4 +32,4 @@ class Test extends React.Component {
     }
 }
 
-export default Test;
+export default Test2;

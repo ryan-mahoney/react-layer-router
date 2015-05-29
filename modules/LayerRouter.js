@@ -28,7 +28,7 @@ class LayerRouter {
         });
     }
 
-    target (index, to, params) {
+    target (index, to, params, Component) {
         if (index == 'new') {
             this.currentIndex = this.layerCount + 1;
         } else if (index == 'clear') {
@@ -38,6 +38,10 @@ class LayerRouter {
                 this.currentIndex++;
             }
         } else {
+            if (index == 0) {
+                console.log('The first layer is identified by the index 1.');
+                return;
+            }
             this.currentIndex = index;
         }
 
@@ -68,9 +72,20 @@ class LayerRouter {
         if (Handler == false) {
             return;
         }
-        React.withContext({'router': this.router}, function () {
-            React.render(<Handler />, document.getElementById(target));
-        });
+        console.log('Target: ' + target);
+
+        console.log(Component);
+        console.log(Handler);
+
+        if (Component) {
+            React.withContext({'router': this.router}, function () {
+                React.render(<Component><Handler /></Component>, document.getElementById(target));
+            });
+        } else {
+            React.withContext({'router': this.router}, function () {
+                React.render(<Handler />, document.getElementById(target));
+            });
+        }
     }
 
     close () {

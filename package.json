@@ -1,7 +1,7 @@
 {
   "name": "react-layer-router",
-  "version": "0.1.11",
-  "description": "Wrapper for React Router to add Layering",
+  "version": "0.1.12",
+  "description": "React layer component that uses React-Router",
   "main": "lib",
   "repository": {
     "type": "git",

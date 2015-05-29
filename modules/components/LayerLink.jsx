@@ -1,17 +1,19 @@
 import React from 'react';
 import LayerRouter from '../LayerRouter';
 
-class LayerLink extends React.Component{
+class LayerLink extends React.Component {
+    constructor() {
+        super();
+        this.handleClick = this.handleClick.bind(this);
+    }
+
     handleClick (event) {
         event.preventDefault();
-        LayerRouter.target(this.props.layer, this.props.to, this.props.params);
+        LayerRouter.target(this.props.layer, this.props.to, this.props.params, this.props.component);
     }
 
     render() {
-        var props = this.props;
-        props.onClick = this.handleClick.bind(this);
-
-        return React.DOM.a(props, this.props.children);
+        return (<a href="#" onClick={this.handleClick}>{this.props.children}</a>);
     }
 };
 
