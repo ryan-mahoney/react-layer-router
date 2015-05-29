@@ -1,3 +1,3 @@
-exports.LayerClose = require('./components/LayerClose.jsx');
-exports.LayerLink = require('./components/LayerLink.jsx');
+exports.LayerClose = require('./components/LayerClose');
+exports.LayerLink = require('./components/LayerLink');
 exports.LayerRouter = require('./LayerRouter');
