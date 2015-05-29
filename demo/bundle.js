@@ -18366,7 +18366,6 @@
 
 	            var match = this.router.match(to);
 	            if (!match.routes) {
-	                console.log('No match');
 	                return;
 	            }
 	            var route = match.routes.pop();
@@ -18382,8 +18381,6 @@
 	            document.body.removeChild(document.getElementById('react-layer-' + this.currentIndex));
 	            this.currentIndex--;
 	            this.layerCount--;
-
-	            // should unmount the react component...
 	        }
 	    }]);
 
@@ -21863,11 +21860,6 @@
 	                    'Close Layer'
 	                )
 	            );
-	        }
-	    }, {
-	        key: 'componentWillUnmount',
-	        value: function componentWillUnmount() {
-	            console.log('Component unmount...');
 	        }
 	    }]);
 

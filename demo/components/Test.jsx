@@ -23,10 +23,6 @@ class Test extends React.Component {
             </div>
         );
     }
-
-    componentWillUnmount() {
-        console.log('Component unmount...');
-    }
 }
 
 export default Test;
