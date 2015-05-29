@@ -1,23 +1,18 @@
 import React from 'react';
-import { Link } from 'react-router';
 import LayerRouter from '../LayerRouter';
 
-function layerLink(Component) {
-    const LayerLink = React.createClass({
-        render() {
-            var customClick = function (e) {
-                var el = e.target;
-                if (el.hasAttribute('data-layer')) {
-                    LayerRouter.target(el.getAttribute('data-layer'));
-                }
-            };
+class LayerLink extends React.Component{
+    handleClick (event) {
+        event.preventDefault();
+        LayerRouter.target(this.props.layer, this.props.to, this.props.params);
+    }
 
-            return <Component {...this.props} onClick={customClick} />;
-        }
-    });
-    return LayerLink;
+    render() {
+        var props = this.props;
+        props.onClick = this.handleClick.bind(this);
+
+        return React.DOM.a(props, this.props.children);
+    }
 };
-
-var LayerLink = layerLink(Link);
 
 export default LayerLink;
