@@ -14,9 +14,9 @@ class Test extends React.Component {
 
                 <br />
 
-                <LayerLink to="/info" layer="0">Info to Here</LayerLink>
+                <LayerLink to="info" layer="0">Info to Here</LayerLink>
                 <br />
-                <LayerLink to="/info" layer="new">Info to Another</LayerLink>
+                <LayerLink to="info" layer="new">Info to Another</LayerLink>
 
                 <br />
                 <LayerClose>Close Layer</LayerClose>

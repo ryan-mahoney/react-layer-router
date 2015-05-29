@@ -18364,12 +18364,10 @@
 	                this.layerCount = this.currentIndex;
 	            }
 
-	            var match = this.router.match(to);
-	            if (!match.routes) {
+	            var Handler = this.findHandlerByName(this.router.routes[0], to);
+	            if (Handler == false) {
 	                return;
 	            }
-	            var route = match.routes.pop();
-	            var Handler = route.handler;
 	            _react2['default'].withContext({ 'router': this.router }, function () {
 	                _react2['default'].render(_react2['default'].createElement(Handler, null), document.getElementById(target));
 	            });
@@ -18381,6 +18379,24 @@
 	            document.body.removeChild(document.getElementById('react-layer-' + this.currentIndex));
 	            this.currentIndex--;
 	            this.layerCount--;
+	        }
+	    }, {
+	        key: 'findHandlerByName',
+	        value: function findHandlerByName(route, name) {
+	            if (route.name == name) {
+	                return route.handler;
+	            }
+	            if (!route.childRoutes) {
+	                return false;
+	            }
+	            var handler;
+	            for (var index in route.childRoutes) {
+	                handler = this.findHandlerByName(route.childRoutes[index], name);
+	                if (handler !== false) {
+	                    return handler;
+	                }
+	            }
+	            return false;
 	        }
 	    }]);
 
@@ -21764,7 +21780,7 @@
 	        _react2['default'].createElement('br', null),
 	        _react2['default'].createElement(
 	          _modulesComponentsLayerLinkJsx2['default'],
-	          { to: '/test', layer: 'new' },
+	          { to: 'test', layer: 'new' },
 	          'Test Layer Link'
 	        )
 	      );
@@ -21844,13 +21860,13 @@
 	                _react2['default'].createElement('br', null),
 	                _react2['default'].createElement(
 	                    _modulesComponentsLayerLinkJsx2['default'],
-	                    { to: '/info', layer: '0' },
+	                    { to: 'info', layer: '0' },
 	                    'Info to Here'
 	                ),
 	                _react2['default'].createElement('br', null),
 	                _react2['default'].createElement(
 	                    _modulesComponentsLayerLinkJsx2['default'],
-	                    { to: '/info', layer: 'new' },
+	                    { to: 'info', layer: 'new' },
 	                    'Info to Another'
 	                ),
 	                _react2['default'].createElement('br', null),

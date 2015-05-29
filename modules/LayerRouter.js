@@ -64,12 +64,10 @@ class LayerRouter {
             this.layerCount = this.currentIndex;
         }
 
-        var match = this.router.match(to);
-        if (!match.routes) {
+        var Handler = this.findHandlerByName(this.router.routes[0], to);
+        if (Handler == false) {
             return;
         }
-        var route = match.routes.pop();
-        var Handler = route.handler;
         React.withContext({'router': this.router}, function () {
             React.render(<Handler />, document.getElementById(target));
         });
@@ -80,6 +78,23 @@ class LayerRouter {
         document.body.removeChild(document.getElementById('react-layer-' + this.currentIndex));
         this.currentIndex--;
         this.layerCount--;
+    }
+
+    findHandlerByName (route, name) {
+        if (route.name == name) {
+            return route.handler;
+        }
+        if (!route.childRoutes) {
+            return false;
+        }
+        var handler;
+        for (var index in route.childRoutes) {
+            handler = this.findHandlerByName(route.childRoutes[index], name);
+            if (handler !== false) {
+                return handler;
+            }
+        }
+        return false;
     }
 }
 

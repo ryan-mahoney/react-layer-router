@@ -12,7 +12,7 @@ class Info extends React.Component {
         <br />
         <Link to="test">Test Link</Link>
         <br />
-        <LayerLink to="/test" layer="new">Test Layer Link</LayerLink>
+        <LayerLink to="test" layer="new">Test Layer Link</LayerLink>
       </div>
     );
   }
