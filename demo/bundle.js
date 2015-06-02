@@ -22279,7 +22279,7 @@
 	                _react2['default'].createElement('br', null),
 	                _react2['default'].createElement(
 	                    _libComponentsLayerClose2['default'],
-	                    { className: 'extra-class' },
+	                    { className: 'extra-class extra-class2' },
 	                    'Close This Layer'
 	                )
 	            );
