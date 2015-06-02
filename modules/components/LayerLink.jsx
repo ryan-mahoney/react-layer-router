@@ -15,7 +15,7 @@ class LayerLink extends React.Component {
     render () {
         var classNames = 'react-layer-open';
         if (this.props.className) {
-            this.classNames += ' ' + this.props.className;
+            classNames += ' ' + this.props.className;
         }
         var id = null;
         if (this.props.id) {

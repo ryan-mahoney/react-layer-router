@@ -18303,7 +18303,7 @@
 	        value: function render() {
 	            var classNames = 'react-layer-close';
 	            if (this.props.className) {
-	                this.classNames += ' ' + this.props.className;
+	                classNames += ' ' + this.props.className;
 	            }
 	            var id = null;
 	            if (this.props.id) {
@@ -18579,7 +18579,7 @@
 	        value: function render() {
 	            var classNames = 'react-layer-open';
 	            if (this.props.className) {
-	                this.classNames += ' ' + this.props.className;
+	                classNames += ' ' + this.props.className;
 	            }
 	            var id = null;
 	            if (this.props.id) {
