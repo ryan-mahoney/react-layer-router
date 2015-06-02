@@ -8,13 +8,12 @@ class RouterLayerHandler extends React.Component {
     }
 
     render() {
-        var layerStyle = {
-            display: 'none'
-        };
-
         var layers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(function (layer) {
             var id = 'react-layer-' + layer;
-            layerStyle.xIndex = layer * 100;
+            var layerStyle = {
+                display: 'none'
+            };
+            layerStyle.zIndex = layer * 100;
             return (
                 <div key={id} id={id} style={layerStyle} className="react-layer"></div>
             );

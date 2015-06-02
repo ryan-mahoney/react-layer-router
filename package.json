@@ -1,6 +1,6 @@
 {
   "name": "react-layer-router",
-  "version": "0.1.16",
+  "version": "0.1.17",
   "description": "React layer component that uses React-Router",
   "main": "lib",
   "repository": {
