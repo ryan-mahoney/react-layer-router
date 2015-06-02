@@ -40,7 +40,7 @@ class Test extends React.Component {
                 <br />
                 <br />
 
-                <LayerClose>Close This Layer</LayerClose>
+                <LayerClose className="extra-class">Close This Layer</LayerClose>
             </div>
         );
     }

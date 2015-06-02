@@ -18283,10 +18283,10 @@
 	var _LayerRouter2 = _interopRequireDefault(_LayerRouter);
 
 	var LayerClose = (function (_React$Component) {
-	    function LayerClose() {
+	    function LayerClose(props) {
 	        _classCallCheck(this, LayerClose);
 
-	        _get(Object.getPrototypeOf(LayerClose.prototype), 'constructor', this).call(this);
+	        _get(Object.getPrototypeOf(LayerClose.prototype), 'constructor', this).call(this, props);
 	        this.handleClick = this.handleClick.bind(this);
 	    }
 
@@ -18301,7 +18301,15 @@
 	    }, {
 	        key: 'render',
 	        value: function render() {
-	            return _react2['default'].createElement('a', { className: 'react-layer-close', href: '#', onClick: this.handleClick }, this.props.children);
+	            var classNames = 'react-layer-close';
+	            if (this.props.className) {
+	                this.classNames += ' ' + this.props.className;
+	            }
+	            var id = null;
+	            if (this.props.id) {
+	                id = this.props.id;
+	            }
+	            return _react2['default'].createElement('a', { id: id, className: classNames, href: '#', onClick: this.handleClick }, this.props.children);
 	        }
 	    }]);
 
@@ -18551,10 +18559,10 @@
 	var _LayerRouter2 = _interopRequireDefault(_LayerRouter);
 
 	var LayerLink = (function (_React$Component) {
-	    function LayerLink() {
+	    function LayerLink(props) {
 	        _classCallCheck(this, LayerLink);
 
-	        _get(Object.getPrototypeOf(LayerLink.prototype), 'constructor', this).call(this);
+	        _get(Object.getPrototypeOf(LayerLink.prototype), 'constructor', this).call(this, props);
 	        this.handleClick = this.handleClick.bind(this);
 	    }
 
@@ -18569,7 +18577,15 @@
 	    }, {
 	        key: 'render',
 	        value: function render() {
-	            return _react2['default'].createElement('a', { href: '#', onClick: this.handleClick }, this.props.children);
+	            var classNames = 'react-layer-open';
+	            if (this.props.className) {
+	                this.classNames += ' ' + this.props.className;
+	            }
+	            var id = null;
+	            if (this.props.id) {
+	                id = this.props.id;
+	            }
+	            return _react2['default'].createElement('a', { id: id, className: classNames, href: '#', onClick: this.handleClick }, this.props.children);
 	        }
 	    }]);
 
@@ -22263,7 +22279,7 @@
 	                _react2['default'].createElement('br', null),
 	                _react2['default'].createElement(
 	                    _libComponentsLayerClose2['default'],
-	                    null,
+	                    { className: 'extra-class' },
 	                    'Close This Layer'
 	                )
 	            );

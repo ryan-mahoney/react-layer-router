@@ -3,8 +3,8 @@ import LayerRouter from '../LayerRouter';
 
 class LayerClose extends React.Component {
 
-    constructor() {
-        super();
+    constructor (props) {
+        super(props);
         this.handleClick = this.handleClick.bind(this);
     }
 
@@ -13,8 +13,16 @@ class LayerClose extends React.Component {
         LayerRouter.close();
     }
 
-    render() {
-        return (<a className="react-layer-close" href="#" onClick={this.handleClick}>{this.props.children}</a>);
+    render () {
+        var classNames = 'react-layer-close';
+        if (this.props.className) {
+            this.classNames += ' ' + this.props.className;
+        }
+        var id = null;
+        if (this.props.id) {
+            id = this.props.id;
+        }
+        return (<a id={id} className={classNames} href="#" onClick={this.handleClick}>{this.props.children}</a>);
     }
 }
 
