@@ -7,13 +7,12 @@ class LayerRouter {
         this.currentIndex = 0;
         this.component = null;
         this.router = null;
-        this.appRootId = null;
+        this.getRouter = this.getRouter.bind(this);
     }
 
-    run (appRootId, router, locationEmitter) {
+    run (router, locationEmitter) {
         // plug this router into the location event emitter
         this.router = router;
-        this.appRootId = appRootId;
         var that = this;
         locationEmitter.addChangeListener(function (change) {
             // close all open layers
@@ -46,51 +45,45 @@ class LayerRouter {
         }
 
         if (this.currentIndex > this.layerCount) {
-            var layer = document.createElement('div');
-            layer.style.cssText = 'z-index:' + (this.currentIndex * 100) + ';';
-            layer.id = 'react-layer-' + this.currentIndex;
-            layer.className = 'react-layer';
-            var previousLayer = this.appRootId;
-            if (this.layerCount > 0) {
-                previousLayer = 'react-layer-' + this.layerCount;
-            }
-            document.body.insertBefore(layer, document.getElementById(previousLayer));
             this.layerCount = this.currentIndex;
         }
         var target = 'react-layer-' + this.currentIndex;
         if (this.currentIndex < this.layerCount) {
             var i;
             var layerId;
+            var layer;
             for (i = this.layerCount; i > this.currentIndex; i--) {
                 layerId = 'react-layer-' + i;
-                document.body.removeChild(document.getElementById(layerId));
+                layer = document.getElementById(layerId);
+                React.unmountComponentAtNode(layer);
+                layer.style.display = 'none';
             }
             this.layerCount = this.currentIndex;
         }
 
-        var Handler = this.findHandlerByName(this.router.routes[0], to);
-        if (Handler == false) {
+        var Route = this.findHandlerByName(this.router.routes[0], to);
+        if (Route == false) {
             return;
         }
-        console.log('Target: ' + target);
 
-        console.log(Component);
-        console.log(Handler);
+        var target = document.getElementById(target);
+        target.style.display = 'block';
 
         if (Component) {
-            React.withContext({'router': this.router}, function () {
-                React.render(<Component><Handler /></Component>, document.getElementById(target));
-            });
+            //React.withContext({'router': this.router}, function () {
+                React.render(<Component router={this.router}><Route router={this.router} {...params} /></Component>, target);
+            //});
         } else {
-            React.withContext({'router': this.router}, function () {
-                React.render(<Handler />, document.getElementById(target));
-            });
+            //React.withContext({'router': this.router}, function () {
+                React.render(<Route router={this.router} {...params} />, target);
+            //});
         }
     }
 
     close () {
-        React.unmountComponentAtNode(document.getElementById('react-layer-' + this.currentIndex));
-        document.body.removeChild(document.getElementById('react-layer-' + this.currentIndex));
+        var layer = document.getElementById('react-layer-' + this.currentIndex);
+        React.unmountComponentAtNode(layer);
+        layer.style.display = 'none';
         this.currentIndex--;
         this.layerCount--;
     }
@@ -110,6 +103,10 @@ class LayerRouter {
             }
         }
         return false;
+    }
+
+    getRouter () {
+        return this.router;
     }
 }
 

@@ -1,21 +1,32 @@
 import React from 'react';
-import { Link } from 'react-router';
-import LayerLink from '../../modules/components/LayerLink.jsx';
-import Modal from '../../modules/components/layers/Modal.jsx';
+import LayerLink from '../../lib/components/LayerLink';
+import Modal from '../../lib/components/layers/Modal';
 
 class Info2 extends React.Component {
+    constructor () {
+        super();
+        this.handleClick = this.handleClick.bind(this);
+    }
 
-  render() {
-    return (
-      <div>
-        <h1>React Layer Router</h1>
-        <p>This is a demo</p>
-        <br />
-        <Link to="info">Back Home</Link>
-      </div>
-    );
-  }
+    handleClick (event) {
+        event.preventDefault();
+        var el = event.target;
+        var routeName = el.getAttribute('href')
+        this.props.router.transitionTo(routeName);
+    }
 
+    render() {
+        return (
+            <div>
+                <h1>React Layer Router</h1>
+                <p>This is a demo</p>
+
+                <br />
+                <br />
+                <a onClick={this.handleClick} href="info">Back Home</a>
+            </div>
+        );
+    }
 }
 
 export default Info2;

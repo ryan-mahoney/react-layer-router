@@ -1,17 +1,28 @@
 import React from 'react';
-import { Link } from 'react-router';
-import LayerClose from '../../modules/components/LayerClose.jsx';
-import LayerLink from '../../modules/components/LayerLink.jsx';
-import Modal from '../../modules/components/layers/Modal.jsx';
+import LayerClose from '../../lib/components/LayerClose';
+import LayerLink from '../../lib/components/LayerLink';
+import Modal from '../../lib/components/layers/Modal';
 
 class Test2 extends React.Component {
+    constructor () {
+        super();
+        this.handleClick = this.handleClick.bind(this);
+    }
+
+    handleClick (event) {
+        event.preventDefault();
+        var el = event.target;
+        var routeName = el.getAttribute('href')
+        this.props.router.transitionTo(routeName);
+    }
+
     render() {
         return (
             <div>
                 <h1>Another Layer</h1>
                 <p>This is a demo of how layers work.</p>
 
-                <Link to="info">Go Back to Info Page</Link>
+                <a onClick={this.handleClick} href="info">Go Back to Info Page</a>
 
                 <br />
                 <br />
@@ -21,7 +32,7 @@ class Test2 extends React.Component {
                 <br />
                 <br />
 
-                <Link to="info2">Change Top Level Page</Link>
+                <a onClick={this.handleClick} href="info2">Change Top Level Page</a>
 
                 <br />
                 <br />
