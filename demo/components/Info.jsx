@@ -1,21 +1,9 @@
 import React from 'react';
 import LayerLink from '../../lib/components/LayerLink';
 import Modal from '../../lib/components/layers/Modal';
+import { Link } from 'react-router';
 
 class Info extends React.Component {
-
-    constructor () {
-        super();
-        this.handleClick = this.handleClick.bind(this);
-    }
-
-    handleClick (event) {
-        event.preventDefault();
-        var el = event.target;
-        var routeName = el.getAttribute('href')
-        console.log(this.props);
-        //this.props.router.transitionTo(routeName);
-    }
 
     render() {
         return (
@@ -25,7 +13,7 @@ class Info extends React.Component {
                 <br />
                 <br />
 
-                <a onClick={this.handleClick} href="info2">Regular React Link</a>
+                <Link to="info2">Regular React Link</Link>
 
                 <br />
                 <br />

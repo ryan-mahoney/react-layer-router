@@ -21929,8 +21929,6 @@
 
 	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
-	var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
@@ -21949,26 +21947,20 @@
 
 	var _libComponentsLayersModal2 = _interopRequireDefault(_libComponentsLayersModal);
 
+	var _reactRouter = __webpack_require__(162);
+
 	var Info = (function (_React$Component) {
 	    function Info() {
 	        _classCallCheck(this, Info);
 
-	        _get(Object.getPrototypeOf(Info.prototype), 'constructor', this).call(this);
-	        this.handleClick = this.handleClick.bind(this);
+	        if (_React$Component != null) {
+	            _React$Component.apply(this, arguments);
+	        }
 	    }
 
 	    _inherits(Info, _React$Component);
 
 	    _createClass(Info, [{
-	        key: 'handleClick',
-	        value: function handleClick(event) {
-	            event.preventDefault();
-	            var el = event.target;
-	            var routeName = el.getAttribute('href');
-	            console.log(this.props);
-	            //this.props.router.transitionTo(routeName);
-	        }
-	    }, {
 	        key: 'render',
 	        value: function render() {
 	            return _react2['default'].createElement(
@@ -21987,8 +21979,8 @@
 	                _react2['default'].createElement('br', null),
 	                _react2['default'].createElement('br', null),
 	                _react2['default'].createElement(
-	                    'a',
-	                    { onClick: this.handleClick, href: 'info2' },
+	                    _reactRouter.Link,
+	                    { to: 'info2' },
 	                    'Regular React Link'
 	                ),
 	                _react2['default'].createElement('br', null),
@@ -22086,8 +22078,6 @@
 
 	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
-	var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
@@ -22098,33 +22088,20 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _libComponentsLayerLink = __webpack_require__(160);
-
-	var _libComponentsLayerLink2 = _interopRequireDefault(_libComponentsLayerLink);
-
-	var _libComponentsLayersModal = __webpack_require__(203);
-
-	var _libComponentsLayersModal2 = _interopRequireDefault(_libComponentsLayersModal);
+	var _reactRouter = __webpack_require__(162);
 
 	var Info2 = (function (_React$Component) {
 	    function Info2() {
 	        _classCallCheck(this, Info2);
 
-	        _get(Object.getPrototypeOf(Info2.prototype), 'constructor', this).call(this);
-	        this.handleClick = this.handleClick.bind(this);
+	        if (_React$Component != null) {
+	            _React$Component.apply(this, arguments);
+	        }
 	    }
 
 	    _inherits(Info2, _React$Component);
 
 	    _createClass(Info2, [{
-	        key: 'handleClick',
-	        value: function handleClick(event) {
-	            event.preventDefault();
-	            var el = event.target;
-	            var routeName = el.getAttribute('href');
-	            this.props.router.transitionTo(routeName);
-	        }
-	    }, {
 	        key: 'render',
 	        value: function render() {
 	            return _react2['default'].createElement(
@@ -22143,8 +22120,8 @@
 	                _react2['default'].createElement('br', null),
 	                _react2['default'].createElement('br', null),
 	                _react2['default'].createElement(
-	                    'a',
-	                    { onClick: this.handleClick, href: 'info' },
+	                    _reactRouter.Link,
+	                    { to: 'info' },
 	                    'Back Home'
 	                )
 	            );

@@ -1,20 +1,7 @@
 import React from 'react';
-import LayerLink from '../../lib/components/LayerLink';
-import Modal from '../../lib/components/layers/Modal';
+import { Link } from 'react-router';
 
 class Info2 extends React.Component {
-    constructor () {
-        super();
-        this.handleClick = this.handleClick.bind(this);
-    }
-
-    handleClick (event) {
-        event.preventDefault();
-        var el = event.target;
-        var routeName = el.getAttribute('href')
-        this.props.router.transitionTo(routeName);
-    }
-
     render() {
         return (
             <div>
@@ -23,7 +10,7 @@ class Info2 extends React.Component {
 
                 <br />
                 <br />
-                <a onClick={this.handleClick} href="info">Back Home</a>
+                <Link to="info">Back Home</Link>
             </div>
         );
     }
