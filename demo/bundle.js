@@ -22448,16 +22448,9 @@
 	Object.defineProperty(exports, '__esModule', {
 	  value: true
 	});
+	var EventEmitter = __webpack_require__(209).EventEmitter2 || __webpack_require__(209);
 
-	function _interopRequireDefault(obj) {
-	  return obj && obj.__esModule ? obj : { 'default': obj };
-	}
-
-	var _eventemitter2 = __webpack_require__(209);
-
-	var _eventemitter22 = _interopRequireDefault(_eventemitter2);
-
-	var LayerEvents = new _eventemitter22['default']();
+	var LayerEvents = new EventEmitter();
 
 	exports['default'] = LayerEvents;
 	module.exports = exports['default'];
