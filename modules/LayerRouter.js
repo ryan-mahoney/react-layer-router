@@ -1,4 +1,5 @@
 import React from 'react';
+import LayerEvents from './LayerEvents';
 
 class LayerRouter {
 
@@ -54,9 +55,9 @@ class LayerRouter {
             var layer;
             for (i = this.layerCount; i > this.currentIndex; i--) {
                 layerId = 'react-layer-' + i;
-                layer = document.getElementById(layerId);
-                React.unmountComponentAtNode(layer);
-                layer.style.display = 'none';
+                LayerEvents.emit(layerId, {
+                    route: null
+                });
             }
             this.layerCount = this.currentIndex;
         }
@@ -66,24 +67,26 @@ class LayerRouter {
             return;
         }
 
-        var target = document.getElementById(target);
-        target.style.display = 'block';
-
+        var finalComponent;
+        var style = {
+            zIndex: (this.currentIndex * 100),
+            display: 'block'
+        };
         if (Component) {
-            //React.withContext({'router': this.router}, function () {
-                React.render(<Component router={this.router}><Route router={this.router} {...params} /></Component>, target);
-            //});
+            finalComponent = <Component id={target} style={style} className="react-layer" router={this.router}><Route router={this.router} {...params} /></Component>;
         } else {
-            //React.withContext({'router': this.router}, function () {
-                React.render(<Route router={this.router} {...params} />, target);
-            //});
+            finalComponent = <Route id={target} style={style} className="react-layer" router={this.router} {...params} />;
         }
+        LayerEvents.emit(target, {
+            route: finalComponent
+        });
     }
 
     close () {
-        var layer = document.getElementById('react-layer-' + this.currentIndex);
-        React.unmountComponentAtNode(layer);
-        layer.style.display = 'none';
+        var target = 'react-layer-' + this.currentIndex;
+        LayerEvents.emit(target, {
+            route: null
+        });
         this.currentIndex--;
         this.layerCount--;
     }
