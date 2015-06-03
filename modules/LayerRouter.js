@@ -8,7 +8,6 @@ class LayerRouter {
         this.currentIndex = 0;
         this.component = null;
         this.router = null;
-        this.getRouter = this.getRouter.bind(this);
     }
 
     run (router, locationEmitter) {
@@ -76,8 +75,7 @@ class LayerRouter {
             route: Route,
             wrapper: Component,
             style: style,
-            params: params,
-            router: this.router
+            params: params
         });
     }
 
@@ -105,10 +103,6 @@ class LayerRouter {
             }
         }
         return false;
-    }
-
-    getRouter () {
-        return this.router;
     }
 }
 

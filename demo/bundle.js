@@ -18365,7 +18365,6 @@
 	        this.currentIndex = 0;
 	        this.component = null;
 	        this.router = null;
-	        this.getRouter = this.getRouter.bind(this);
 	    }
 
 	    _createClass(LayerRouter, [{
@@ -18436,8 +18435,7 @@
 	                route: Route,
 	                wrapper: Component,
 	                style: style,
-	                params: params,
-	                router: this.router
+	                params: params
 	            });
 	        }
 	    }, {
@@ -18467,11 +18465,6 @@
 	                }
 	            }
 	            return false;
-	        }
-	    }, {
-	        key: 'getRouter',
-	        value: function getRouter() {
-	            return this.router;
 	        }
 	    }]);
 
@@ -19334,8 +19327,6 @@
 
 	        _get(Object.getPrototypeOf(Layer.prototype), 'constructor', this).call(this, props);
 	        this.state = props;
-	        this.componentWillMount = this.componentWillMount.bind(this);
-	        this.render = this.render.bind(this);
 	    }
 
 	    _inherits(Layer, _React$Component);
@@ -19372,16 +19363,12 @@
 	                return _react2['default'].createElement(Wrapper, {
 	                    id: id,
 	                    style: this.state.style,
-	                    className: 'react-layer',
-	                    router: this.state.router }, _react2['default'].createElement(Component, _extends({
-	                    router: this.state.router
-	                }, this.state.params)));
+	                    className: 'react-layer' }, _react2['default'].createElement(Component, this.state.params));
 	            } else {
 	                return _react2['default'].createElement(Component, _extends({
 	                    id: id,
 	                    style: this.state.style,
-	                    className: 'react-layer',
-	                    router: this.state.router
+	                    className: 'react-layer'
 	                }, this.state.params));
 	            }
 	        }
@@ -22753,26 +22740,6 @@
 	    };
 	})();
 
-	var _get = function get(_x, _x2, _x3) {
-	    var _again = true;_function: while (_again) {
-	        var object = _x,
-	            property = _x2,
-	            receiver = _x3;desc = parent = getter = undefined;_again = false;var desc = Object.getOwnPropertyDescriptor(object, property);if (desc === undefined) {
-	            var parent = Object.getPrototypeOf(object);if (parent === null) {
-	                return undefined;
-	            } else {
-	                _x = parent;_x2 = property;_x3 = receiver;_again = true;continue _function;
-	            }
-	        } else if ('value' in desc) {
-	            return desc.value;
-	        } else {
-	            var getter = desc.get;if (getter === undefined) {
-	                return undefined;
-	            }return getter.call(receiver);
-	        }
-	    }
-	};
-
 	function _interopRequireDefault(obj) {
 	    return obj && obj.__esModule ? obj : { 'default': obj };
 	}
@@ -22794,11 +22761,12 @@
 	var _react2 = _interopRequireDefault(_react);
 
 	var Modal = (function (_React$Component) {
-	    function Modal(props) {
+	    function Modal() {
 	        _classCallCheck(this, Modal);
 
-	        _get(Object.getPrototypeOf(Modal.prototype), 'constructor', this).call(this, props);
-	        this.render = this.render.bind(this);
+	        if (_React$Component != null) {
+	            _React$Component.apply(this, arguments);
+	        }
 	    }
 
 	    _inherits(Modal, _React$Component);

@@ -6,8 +6,6 @@ class Layer extends React.Component {
     constructor (props) {
         super(props);
         this.state = props;
-        this.componentWillMount = this.componentWillMount.bind(this);
-        this.render = this.render.bind(this);
     }
 
     componentWillMount () {
@@ -41,12 +39,8 @@ class Layer extends React.Component {
                 <Wrapper
                     id={id}
                     style={this.state.style}
-                    className="react-layer"
-                    router={this.state.router}>
-                        <Component
-                            router={this.state.router}
-                            {...this.state.params}
-                        />
+                    className="react-layer">
+                        <Component {...this.state.params} />
                 </Wrapper>);
         } else {
             return (
@@ -54,7 +48,6 @@ class Layer extends React.Component {
                     id={id}
                     style={this.state.style}
                     className="react-layer"
-                    router={this.state.router}
                     {...this.state.params} />
             );
         }
