@@ -4,8 +4,8 @@ import LayerLink from '../../lib/components/LayerLink';
 import Modal from '../../lib/components/layers/Modal';
 
 class Test extends React.Component {
-    constructor () {
-        super();
+    constructor (props) {
+        super(props);
         this.handleClick = this.handleClick.bind(this);
     }
 

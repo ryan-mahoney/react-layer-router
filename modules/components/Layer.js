@@ -13,16 +13,10 @@ class Layer extends React.Component {
     componentWillMount () {
         var component = this;
         LayerEvents.on('react-layer-' + this.props.offset, function(nextState) {
-            var style = component.state.style;
             if (nextState.route == null) {
-                style.display = 'none';
-            } else {
-                style.display = 'block';
+                nextState.style = { display: 'none' };
             }
-            component.setState({
-                route: nextState.route,
-                style: style
-            });
+            component.setState(nextState);
         });
     }
 
@@ -37,8 +31,32 @@ class Layer extends React.Component {
                     id={id}
                     style={this.state.style}
                 >Empty Layer.</div>);
+        }
+
+        var Component = this.state.route;
+        var Wrapper = this.state.wrapper;
+
+        if (Wrapper != null) {
+            return (
+                <Wrapper
+                    id={id}
+                    style={this.state.style}
+                    className="react-layer"
+                    router={this.state.router}>
+                        <Component
+                            router={this.state.router}
+                            {...this.state.params}
+                        />
+                </Wrapper>);
         } else {
-            return route;
+            return (
+                <Component
+                    id={id}
+                    style={this.state.style}
+                    className="react-layer"
+                    router={this.state.router}
+                    {...this.state.params} />
+            );
         }
     }
 }

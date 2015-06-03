@@ -67,18 +67,17 @@ class LayerRouter {
             return;
         }
 
-        var finalComponent;
         var style = {
             zIndex: (this.currentIndex * 100),
             display: 'block'
         };
-        if (Component) {
-            finalComponent = <Component id={target} style={style} className="react-layer" router={this.router}><Route router={this.router} {...params} /></Component>;
-        } else {
-            finalComponent = <Route id={target} style={style} className="react-layer" router={this.router} {...params} />;
-        }
+
         LayerEvents.emit(target, {
-            route: finalComponent
+            route: Route,
+            wrapper: Component,
+            style: style,
+            params: params,
+            router: this.router
         });
     }
 
