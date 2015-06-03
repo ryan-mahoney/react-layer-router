@@ -25,12 +25,12 @@ class Test extends React.Component {
                 <br />
                 <br />
 
-                <LayerLink to="test2" layer="1" component={Modal}>Put Different Content Here</LayerLink>
+                <LayerLink to="test2" layer="1" wrapper={Modal}>Put Different Content Here</LayerLink>
 
                 <br />
                 <br />
 
-                <LayerLink to="test2" layer="new" component={Modal}>Load Another Layer</LayerLink>
+                <LayerLink to="test2" layer="new" wrapper={Modal}>Load Another Layer</LayerLink>
 
                 <br />
                 <br />

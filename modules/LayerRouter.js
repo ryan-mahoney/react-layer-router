@@ -27,7 +27,7 @@ class LayerRouter {
         });
     }
 
-    target (index, to, params, Component) {
+    target (index, to, params, Wrapper) {
         if (index == 'new') {
             this.currentIndex = this.layerCount + 1;
         } else if (index == 'clear') {
@@ -55,7 +55,11 @@ class LayerRouter {
             for (i = this.layerCount; i > this.currentIndex; i--) {
                 layerId = 'react-layer-' + i;
                 LayerEvents.emit(layerId, {
-                    route: null
+                    route: null,
+                    style: {
+                        zIndex: (i * 100),
+                        display: 'none'
+                    }
                 });
             }
             this.layerCount = this.currentIndex;
@@ -73,7 +77,7 @@ class LayerRouter {
 
         LayerEvents.emit(target, {
             route: Route,
-            wrapper: Component,
+            wrapper: Wrapper,
             style: style,
             params: params
         });
@@ -82,7 +86,11 @@ class LayerRouter {
     close () {
         var target = 'react-layer-' + this.currentIndex;
         LayerEvents.emit(target, {
-            route: null
+            route: null,
+            style: {
+                zIndex: (this.currentIndex * 100),
+                display: 'none'
+            }
         });
         this.currentIndex--;
         this.layerCount--;

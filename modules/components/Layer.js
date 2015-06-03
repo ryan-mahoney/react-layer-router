@@ -11,9 +11,6 @@ class Layer extends React.Component {
     componentWillMount () {
         var component = this;
         LayerEvents.on('react-layer-' + this.props.offset, function(nextState) {
-            if (nextState.route == null) {
-                nextState.style = { display: 'none' };
-            }
             component.setState(nextState);
         });
     }

@@ -18,7 +18,7 @@ class Info extends React.Component {
                 <br />
                 <br />
 
-                <LayerLink to="test" layer="new" component={Modal}>Open a Layer</LayerLink>
+                <LayerLink to="test" layer="new" wrapper={Modal}>Open a Layer</LayerLink>
             </div>
         );
     }

@@ -9,7 +9,7 @@ class LayerLink extends React.Component {
 
     handleClick (event) {
         event.preventDefault();
-        LayerRouter.target(this.props.layer, this.props.to, this.props.params, this.props.component);
+        LayerRouter.target(this.props.layer, this.props.to, this.props.params, this.props.wrapper);
     }
 
     render () {

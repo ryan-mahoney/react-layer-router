@@ -18387,7 +18387,7 @@
 	        }
 	    }, {
 	        key: 'target',
-	        value: function target(index, to, params, Component) {
+	        value: function target(index, to, params, Wrapper) {
 	            if (index == 'new') {
 	                this.currentIndex = this.layerCount + 1;
 	            } else if (index == 'clear') {
@@ -18415,7 +18415,11 @@
 	                for (i = this.layerCount; i > this.currentIndex; i--) {
 	                    layerId = 'react-layer-' + i;
 	                    _LayerEvents2['default'].emit(layerId, {
-	                        route: null
+	                        route: null,
+	                        style: {
+	                            zIndex: i * 100,
+	                            display: 'none'
+	                        }
 	                    });
 	                }
 	                this.layerCount = this.currentIndex;
@@ -18433,7 +18437,7 @@
 
 	            _LayerEvents2['default'].emit(target, {
 	                route: Route,
-	                wrapper: Component,
+	                wrapper: Wrapper,
 	                style: style,
 	                params: params
 	            });
@@ -18443,7 +18447,11 @@
 	        value: function close() {
 	            var target = 'react-layer-' + this.currentIndex;
 	            _LayerEvents2['default'].emit(target, {
-	                route: null
+	                route: null,
+	                style: {
+	                    zIndex: this.currentIndex * 100,
+	                    display: 'none'
+	                }
 	            });
 	            this.currentIndex--;
 	            this.layerCount--;
@@ -19133,7 +19141,7 @@
 	        key: 'handleClick',
 	        value: function handleClick(event) {
 	            event.preventDefault();
-	            _LayerRouter2['default'].target(this.props.layer, this.props.to, this.props.params, this.props.component);
+	            _LayerRouter2['default'].target(this.props.layer, this.props.to, this.props.params, this.props.wrapper);
 	        }
 	    }, {
 	        key: 'render',
@@ -19336,9 +19344,6 @@
 	        value: function componentWillMount() {
 	            var component = this;
 	            _LayerEvents2['default'].on('react-layer-' + this.props.offset, function (nextState) {
-	                if (nextState.route == null) {
-	                    nextState.style = { display: 'none' };
-	                }
 	                component.setState(nextState);
 	            });
 	        }
@@ -22707,7 +22712,7 @@
 	                _react2['default'].createElement('br', null),
 	                _react2['default'].createElement(
 	                    _libComponentsLayerLink2['default'],
-	                    { to: 'test', layer: 'new', component: _libComponentsLayersModal2['default'] },
+	                    { to: 'test', layer: 'new', wrapper: _libComponentsLayersModal2['default'] },
 	                    'Open a Layer'
 	                )
 	            );
@@ -22933,14 +22938,14 @@
 	                _react2['default'].createElement('br', null),
 	                _react2['default'].createElement(
 	                    _libComponentsLayerLink2['default'],
-	                    { to: 'test2', layer: '1', component: _libComponentsLayersModal2['default'] },
+	                    { to: 'test2', layer: '1', wrapper: _libComponentsLayersModal2['default'] },
 	                    'Put Different Content Here'
 	                ),
 	                _react2['default'].createElement('br', null),
 	                _react2['default'].createElement('br', null),
 	                _react2['default'].createElement(
 	                    _libComponentsLayerLink2['default'],
-	                    { to: 'test2', layer: 'new', component: _libComponentsLayersModal2['default'] },
+	                    { to: 'test2', layer: 'new', wrapper: _libComponentsLayersModal2['default'] },
 	                    'Load Another Layer'
 	                ),
 	                _react2['default'].createElement('br', null),
@@ -23046,7 +23051,7 @@
 	                _react2['default'].createElement('br', null),
 	                _react2['default'].createElement(
 	                    _libComponentsLayerLink2['default'],
-	                    { to: 'test', layer: 'new', component: _libComponentsLayersModal2['default'] },
+	                    { to: 'test', layer: 'new', wrapper: _libComponentsLayersModal2['default'] },
 	                    'Load Another Layer'
 	                ),
 	                _react2['default'].createElement('br', null),

@@ -27,7 +27,7 @@ class Test2 extends React.Component {
                 <br />
                 <br />
 
-                <LayerLink to="test" layer="new" component={Modal}>Load Another Layer</LayerLink>
+                <LayerLink to="test" layer="new" wrapper={Modal}>Load Another Layer</LayerLink>
 
                 <br />
                 <br />
