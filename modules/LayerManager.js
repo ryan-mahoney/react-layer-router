@@ -1,33 +1,15 @@
 import React from 'react';
 import LayerEvents from './LayerEvents';
 
-class LayerRouter {
+class LayerManager {
 
     constructor() {
         this.layerCount = 0;
         this.currentIndex = 0;
         this.component = null;
-        this.router = null;
     }
 
-    run (router, locationEmitter) {
-        // plug this router into the location event emitter
-        this.router = router;
-        var that = this;
-        locationEmitter.addChangeListener(function (change) {
-            // close all open layers
-            if (that.currentIndex == 0) {
-                return;
-            }
-
-            // loop over the close
-            while (that.currentIndex > 0) {
-                that.close();
-            }
-        });
-    }
-
-    target (index, to, params, Wrapper) {
+    target (index, Component, params, Wrapper) {
         if (index == 'new') {
             this.currentIndex = this.layerCount + 1;
         } else if (index == 'clear') {
@@ -65,11 +47,6 @@ class LayerRouter {
             this.layerCount = this.currentIndex;
         }
 
-        var Component = this.findHandlerByName(this.router.routes[0], to);
-        if (Component == false) {
-            return;
-        }
-
         var style = {
             zIndex: (this.currentIndex * 100),
             display: 'block'
@@ -95,25 +72,8 @@ class LayerRouter {
         this.currentIndex--;
         this.layerCount--;
     }
-
-    findHandlerByName (route, name) {
-        if (route.name == name) {
-            return route.handler;
-        }
-        if (!route.childRoutes) {
-            return false;
-        }
-        var handler;
-        for (var index in route.childRoutes) {
-            handler = this.findHandlerByName(route.childRoutes[index], name);
-            if (handler !== false) {
-                return handler;
-            }
-        }
-        return false;
-    }
 }
 
-var layerRouter = new LayerRouter();
+var layerManager = new LayerManager();
 
-export default layerRouter;
+export default layerManager;

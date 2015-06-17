@@ -1,5 +1,4 @@
 import React from 'react';
-import LayerRouter from '../LayerRouter';
 import Layer from './Layer';
 
 class RouterLayerHandler extends React.Component {
@@ -10,14 +9,12 @@ class RouterLayerHandler extends React.Component {
                 display: 'none'
             };
             layerStyle.zIndex = layer * 100;
-            var route = null;
             var key = 'react-layer-' + layer;
             return (
                 <Layer
                     key={key}
                     offset={layer}
                     style={layerStyle}
-                    route={route}
                 />
             );
         });

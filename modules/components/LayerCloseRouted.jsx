@@ -1,5 +1,5 @@
 import React from 'react';
-import LayerManager from '../LayerManager';
+import LayerRouter from '../LayerRouter';
 
 class LayerClose extends React.Component {
 
@@ -10,7 +10,7 @@ class LayerClose extends React.Component {
 
     handleClick (event) {
         event.preventDefault();
-        LayerManager.close();
+        LayerRouter.close();
     }
 
     render () {

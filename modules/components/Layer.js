@@ -16,10 +16,12 @@ class Layer extends React.Component {
     }
 
     render() {
-        var route = this.state.route;
+        var Component = this.state.component;
+        var Wrapper = this.state.wrapper;
+
         var className = 'react-layer';
         var id = 'react-layer-' + this.props.offset;
-        if (route == null) {
+        if (Component == null) {
             return (
                 <div
                     className={className}
@@ -27,9 +29,6 @@ class Layer extends React.Component {
                     style={this.state.style}
                 >Empty Layer.</div>);
         }
-
-        var Component = this.state.route;
-        var Wrapper = this.state.wrapper;
 
         if (Wrapper != null) {
             return (

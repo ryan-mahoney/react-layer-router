@@ -1,0 +1,19 @@
+body {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    height: 100%;
+    background-color: #efefef;
+}
+
+.react-layer {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.react-layer-modal {
+    margin: 100px;
+    border: 1px solid #000;
+    background-color: #fff
+}

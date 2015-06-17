@@ -1,8 +1,7 @@
 import React from 'react';
-import LayerManager from '../LayerManager';
+import LayerRouter from '../LayerRouter';
 
-class LayerClose extends React.Component {
-
+class LayerLinkRouted extends React.Component {
     constructor (props) {
         super(props);
         this.handleClick = this.handleClick.bind(this);
@@ -10,11 +9,11 @@ class LayerClose extends React.Component {
 
     handleClick (event) {
         event.preventDefault();
-        LayerManager.close();
+        LayerRouter.target(this.props.layer, this.props.to, this.props.params, this.props.wrapper);
     }
 
     render () {
-        var classNames = 'react-layer-close';
+        var classNames = 'react-layer-open';
         if (this.props.className) {
             classNames += ' ' + this.props.className;
         }
@@ -24,6 +23,6 @@ class LayerClose extends React.Component {
         }
         return (<a id={id} className={classNames} href="#" onClick={this.handleClick}>{this.props.children}</a>);
     }
-}
+};
 
-export default LayerClose;
+export default LayerLinkRouted;
