@@ -1,5 +1,10 @@
 import React from 'react';
 import { LayerRouter } from '../lib/index';
-import App from './components/App.jsx';
+import Router from 'react-router';
+import routes from './routes';
 
-React.render(<App />, document.getElementById('app'));
+var router = Router.run(routes, Router.HistoryLocation, (Handler, state) => {
+    React.render(<Handler />, document.getElementById('app'));
+});
+
+LayerRouter.run(router, Router.HistoryLocation);

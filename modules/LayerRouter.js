@@ -55,7 +55,7 @@ class LayerRouter {
             for (i = this.layerCount; i > this.currentIndex; i--) {
                 layerId = 'react-layer-' + i;
                 LayerEvents.emit(layerId, {
-                    component: null,
+                    route: null,
                     style: {
                         zIndex: (i * 100),
                         display: 'none'
@@ -65,8 +65,8 @@ class LayerRouter {
             this.layerCount = this.currentIndex;
         }
 
-        var Component = this.findHandlerByName(this.router.routes[0], to);
-        if (Component == false) {
+        var Route = this.findHandlerByName(this.router.routes[0], to);
+        if (Route == false) {
             return;
         }
 
@@ -76,7 +76,7 @@ class LayerRouter {
         };
 
         LayerEvents.emit(target, {
-            component: Component,
+            route: Route,
             wrapper: Wrapper,
             style: style,
             params: params
@@ -86,7 +86,7 @@ class LayerRouter {
     close () {
         var target = 'react-layer-' + this.currentIndex;
         LayerEvents.emit(target, {
-            component: null,
+            route: null,
             style: {
                 zIndex: (this.currentIndex * 100),
                 display: 'none'

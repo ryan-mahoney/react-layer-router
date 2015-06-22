@@ -1,5 +1,5 @@
 import React from 'react';
-import LayerManager from '../LayerManager';
+import LayerRouter from '../LayerRouter';
 
 class LayerLink extends React.Component {
     constructor (props) {
@@ -9,7 +9,7 @@ class LayerLink extends React.Component {
 
     handleClick (event) {
         event.preventDefault();
-        LayerManager.target(this.props.layer, this.props.component, this.props.params, this.props.wrapper);
+        LayerRouter.target(this.props.layer, this.props.to, this.props.params, this.props.wrapper);
     }
 
     render () {
